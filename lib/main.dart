@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-final bool _isMouse = kIsWeb || (!(Platform.isAndroid || Platform.isIOS));
+final bool _quickMode = kIsWeb || (!(Platform.isAndroid || Platform.isIOS));
 
 void main() {
   runApp(const PrecisionApp());
@@ -41,8 +41,8 @@ class GameWidget extends StatefulWidget {
 }
 
 class _GameWidgetState extends State<GameWidget> {
-  static final int _maxMs = _isMouse ? 2000 : 6000;
-  static final int _recoverMs = _isMouse ? 1300 : 2500;
+  static final int _maxMs = _quickMode ? 2000 : 6000;
+  static final int _recoverMs = _quickMode ? 1300 : 2500;
   static const _msInterval = 50;
 
   double _btnSize = 20;
@@ -268,7 +268,7 @@ class _GameWidgetState extends State<GameWidget> {
                       )),
                       Text.rich(TextSpan(
                         children: [
-                          TextSpan(text: '평균 속 ', style: TextStyle(color: primaryColor)),
+                          TextSpan(text: '평균 속도 ', style: TextStyle(color: primaryColor)),
                           TextSpan(text: '${averageDelay.toInt()}ms'),
                         ],
                         style: TextStyle(fontSize: 20),
